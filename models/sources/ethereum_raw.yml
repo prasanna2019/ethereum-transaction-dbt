@@ -1,0 +1,10 @@
+version: 2
+
+sources:
+  - name: ethereum_raw
+    database: bigquery-public-data     # GCP project
+    schema: crypto_ethereum             # BigQuery dataset
+
+    tables:
+      - name: transactions
+        description: "Raw Ethereum transactions"
