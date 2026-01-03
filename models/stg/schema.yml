@@ -1,0 +1,22 @@
+version: 2
+
+models:
+  - name: stg_transactions
+    description: "Staged and cleaned Ethereum transactions with normalized units (gwei) and date fields. This model transforms raw transaction data for downstream analytics."
+    columns:
+      - name: hash
+        description: "Unique transaction hash (primary key)"
+        tests:
+          - unique
+          - not_null
+      - name: value_gwei
+        description: "Transaction value converted from wei to gwei (value / 1e9)"
+      - name: gas_price_gwei
+        description: "Gas price converted from wei to gwei (gas_price / 1e9)"
+      - name: status
+        description: "Transaction status (1 = success, 0 = failure)"
+      - name: block_date
+        description: "Date extracted from block_timestamp for time-based analysis"
+        tests:
+          - not_null
+

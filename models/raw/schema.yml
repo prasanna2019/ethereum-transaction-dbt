@@ -1,0 +1,26 @@
+version: 2
+
+models:
+  - name: transactions
+    description: "Raw Ethereum transactions from the public BigQuery dataset. This incremental model loads transactions from the last month and partitions by block_timestamp."
+    config:
+      materialized: incremental
+    columns:
+      - name: hash
+        description: "Unique transaction hash (primary key)"
+        tests:
+          - unique
+          - not_null
+      - name: block_timestamp
+        description: "Timestamp when the block was mined"
+        tests:
+          - not_null
+      - name: value
+        description: "Transaction value in wei"
+      - name: gas_price
+        description: "Gas price in wei"
+      - name: receipt_status
+        description: "Transaction receipt status (1 = success, 0 = failure)"
+      - name: transaction_type
+        description: "Ethereum transaction type (0 = legacy, 1 = EIP-2930, 2 = EIP-1559)"
+

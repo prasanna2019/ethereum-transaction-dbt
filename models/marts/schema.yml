@@ -1,0 +1,15 @@
+version: 2
+
+models:
+  - name: transactions_by_type
+    description: "Aggregated view showing transaction counts grouped by transaction type. Useful for analyzing the distribution of transaction types on Ethereum."
+    columns:
+      - name: trxns
+        description: "Count of distinct transactions"
+        tests:
+          - not_null
+      - name: transaction_type
+        description: "Ethereum transaction type (0 = legacy, 1 = EIP-2930, 2 = EIP-1559)"
+        tests:
+          - not_null
+
